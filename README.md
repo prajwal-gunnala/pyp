@@ -25,6 +25,8 @@ Millions of people around the world silently struggle with mental health issues.
 - Offers real-time expert consultations with therapists, psychiatrists, and psychologists.
 - Utilizes interactive tools and healing features to promote a positive mindset and alleviate stress.
 
+![Take a look at my Canva design!-9_page-0001](https://github.com/user-attachments/assets/d6901ea2-1740-4c1e-b4db-6f9fbd922f0e)
+
 ## Features
 **Self-Analysis:**
 - Enables users to conduct a self-assessment, helping those who struggle to articulate their mental health issues.
@@ -82,8 +84,6 @@ The project roadmap includes several phases to further enhance the app's capabil
 **Phase 03 – Community Space:**
 - Creating a community space where users can connect with others facing similar challenges, fostering support networks and social connections.
 
-
-![Take a look at my Canva design!-9_page-0001](https://github.com/user-attachments/assets/d6901ea2-1740-4c1e-b4db-6f9fbd922f0e)
 
 ## Installation and Setup
 To get started with PYP on your local machine, follow these steps:
