@@ -3,17 +3,17 @@
 Healing through conversation, games, and music.
 
 ## Table of Contents
-- [About](#about)
-- [Problem Statement](#problem-statement)
-- [Features](#features)
-- [Solution Architecture](#solution-architecture)
-- [Technology Stack](#technology-stack)
-- [Future Expansions](#future-expansions)
-- [Installation and Setup](#installation-and-setup)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+- About
+- Problem Statement
+- Features
+- Solution Architecture
+- Technology Stack
+- Future Expansions
+- Installation and Setup
+- Usage
+- Contributing
+- License
+- Contact
 
 ## About
 PYP - Prompt Your Problems is a Flutter-based mobile application designed to offer comprehensive mental health support. With a focus on creating a safe and confidential environment, PYP combines self-analysis, AI-powered chatbot interactions, expert consultations, healing games, and music therapy to empower users to manage their mental well-being.
@@ -82,6 +82,9 @@ The project roadmap includes several phases to further enhance the app's capabil
 **Phase 03 – Community Space:**
 - Creating a community space where users can connect with others facing similar challenges, fostering support networks and social connections.
 
+
+![Take a look at my Canva design!-9_page-0001](https://github.com/user-attachments/assets/d6901ea2-1740-4c1e-b4db-6f9fbd922f0e)
+
 ## Installation and Setup
 To get started with PYP on your local machine, follow these steps:
 
@@ -89,3 +92,34 @@ To get started with PYP on your local machine, follow these steps:
    ```bash
    git clone [https://github.com/yourusername/PYP.git](https://github.com/yourusername/PYP.git)
    cd PYP
+Install Flutter:
+Ensure you have Flutter installed on your machine. Refer to the official Flutter documentation for installation instructions.
+Install Dependencies:
+Bash
+
+flutter pub get
+Configure Environment:
+Set up any required API keys or environment variables (for backend services and AI integrations) in a .env file.
+Run the App:
+Bash
+
+flutter run
+Usage
+Self-Analysis: Start the self-analysis module to reflect on your current mental state.
+Chat with PYP: Engage with the AI chatbot for a guided conversation about your concerns.
+Consult Experts: Use the in-app consultation feature to schedule or initiate chats with mental health professionals.
+Play Healing Games: Enjoy a range of games designed to promote relaxation and reduce stress.
+Listen to Healing Music: Access therapeutic soundtracks and frequencies to help ease mental tension.
+Contributing
+We welcome contributions to make PYP even better. If you would like to contribute, please follow these steps:
+
+Fork the repository.
+Create a new branch for your feature or bug fix.
+Commit your changes with clear messages.   
+Open a pull request explaining your changes.
+Please adhere to our Code of Conduct while contributing.
+
+License
+This project is licensed under the MIT License.
+
+Empowering mental health, one conversation at a time.
