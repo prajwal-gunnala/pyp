@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'chatbot.dart';
 import 'games.dart';
 import 'music.dart';
-import 'doctor.dart'; // Import the Doctor class
+import 'doctor.dart';
+import 'widgets/modern_card.dart';
 
 import 'package:pyph/games/tictactoe.dart';
 import 'package:pyph/games/fruitslicer/fruitslicer.dart';
@@ -38,15 +40,19 @@ class Menu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Analysis'),
+        title: Text('Explore', style: GoogleFonts.lato(fontWeight: FontWeight.bold)),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 0,
+        foregroundColor: Colors.black87,
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           buildSection('Harmony Healing', musicData, Music()),
+            buildSection('Harmony Healing', musicData, Music()),
             buildGamesSection('Harmony Quests', gamesData),
             buildSection('Consultants', consultantData, Doctor()),
+            SizedBox(height: 20),
           ],
         ),
       ),
@@ -58,19 +64,30 @@ class Menu extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          padding: const EdgeInsets.fromLTRB(20, 24, 20, 12),
           child: Text(
             title,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: GoogleFonts.lato(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
           ),
         ),
         SizedBox(
-          height: 120,
+          height: 200,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.symmetric(horizontal: 12),
             itemCount: data.length,
             itemBuilder: (context, index) {
-              return buildMenuItem(context, data[index]['name'], data[index]['image'], route);
+              return ModernImageCard(
+                imagePath: data[index]['image'],
+                title: data[index]['name'],
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => route)),
+                height: 200,
+                width: 160,
+              );
             },
           ),
         ),
@@ -79,34 +96,12 @@ class Menu extends StatelessWidget {
   }
 
   Widget buildMenuItem(BuildContext context, String name, String imagePath, Widget route) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => route));
-      },
-      child: Container(
-        width: 120,
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-          color: Colors.blueGrey[100],
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              imagePath,
-              width: 60,
-              height: 60,
-            ),
-            SizedBox(height: 10),
-            Text(
-              name,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
-        ),
-      ),
+    return ModernImageCard(
+      imagePath: imagePath,
+      title: name,
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => route)),
+      height: 180,
+      width: 140,
     );
   }
 
@@ -115,19 +110,30 @@ class Menu extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          padding: const EdgeInsets.fromLTRB(20, 24, 20, 12),
           child: Text(
             title,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: GoogleFonts.lato(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
           ),
         ),
         SizedBox(
-          height: 120,
+          height: 200,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.symmetric(horizontal: 12),
             itemCount: data.length,
             itemBuilder: (context, index) {
-              return buildMenuItem(context, data[index]['name'], data[index]['image'], data[index]['route']);
+              return ModernImageCard(
+                imagePath: data[index]['image'],
+                title: data[index]['name'],
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => data[index]['route'])),
+                height: 200,
+                width: 160,
+              );
             },
           ),
         ),
