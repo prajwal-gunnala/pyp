@@ -4,6 +4,7 @@ import 'games/tictactoe.dart';
 import 'games/puzzle.dart';
 import 'games/flowfree.dart';
 import 'games/fruitslicer/fruitslicer.dart';
+import 'services/wellness_service.dart';
 
 class Games extends StatelessWidget {
   @override
@@ -35,6 +36,7 @@ class Games extends StatelessWidget {
                     Icons.grid_on_rounded,
                     Colors.blue.shade400,
                     () {
+                      WellnessService.recordFeatureUsage('games');
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => TicTacToe()),
@@ -49,6 +51,7 @@ class Games extends StatelessWidget {
                     Icons.apple_rounded,
                     Colors.orange.shade400,
                     () {
+                      WellnessService.recordFeatureUsage('games');
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => FruitSlicer()),
@@ -63,6 +66,7 @@ class Games extends StatelessWidget {
                     Icons.apps_rounded,
                     Colors.purple.shade400,
                     () {
+                      WellnessService.recordFeatureUsage('games');
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => Puzzle()),
@@ -77,6 +81,7 @@ class Games extends StatelessWidget {
                     Icons.timeline_rounded,
                     Colors.green.shade400,
                     () {
+                      WellnessService.recordFeatureUsage('games');
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => FlowFree()),

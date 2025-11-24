@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'welcomepage.dart';
+import 'chatbot.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -30,11 +30,12 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _controller.forward();
 
-    // Navigate to WelcomePage after 3 seconds
+    // Navigate directly to ChatBot after 3 seconds
+    // (Returning users go straight to chat experience)
     Future.delayed(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => WelcomePage(),
+          pageBuilder: (context, animation, secondaryAnimation) => const ChatBot(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(opacity: animation, child: child);
           },

@@ -4,6 +4,7 @@ import 'chatbot.dart';
 import 'assessment.dart';
 import 'category_page.dart';
 import 'profile_page.dart';
+import 'calendar_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -27,6 +28,11 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(builder: (context) => CategoryPage()),
                 );
+              } else if (value == 'calendar') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CalendarPage()),
+                );
               } else if (value == 'profile') {
                 Navigator.push(
                   context,
@@ -35,6 +41,16 @@ class HomePage extends StatelessWidget {
               }
             },
             itemBuilder: (BuildContext context) => [
+              PopupMenuItem(
+                value: 'calendar',
+                child: Row(
+                  children: [
+                    Icon(Icons.calendar_month_rounded, color: Color(0xFF4CAF50)),
+                    SizedBox(width: 12),
+                    Text('Wellness Calendar', style: GoogleFonts.lato(fontSize: 16)),
+                  ],
+                ),
+              ),
               PopupMenuItem(
                 value: 'categories',
                 child: Row(

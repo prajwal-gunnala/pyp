@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'canvas_area/canvas_area.dart';
+import '../../services/user_profile_service.dart';
 
 class FruitSlicer extends StatefulWidget {
   @override
@@ -10,8 +11,14 @@ class FruitSlicer extends StatefulWidget {
 }
 
 class _FruitSlicerState extends State<FruitSlicer> {
+  bool _hasTrackedPlay = false;
+
   @override
   void initState() {
+    super.initState();
+    
+    _trackGamePlay();
+    
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom],
@@ -20,7 +27,13 @@ class _FruitSlicerState extends State<FruitSlicer> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
-    super.initState();
+  }
+
+  Future<void> _trackGamePlay() async {
+    if (!_hasTrackedPlay) {
+      await UserProfileService.incrementGamesPlayed();
+      _hasTrackedPlay = true;
+    }
   }
 
   @override

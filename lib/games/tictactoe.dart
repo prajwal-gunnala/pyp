@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/user_profile_service.dart';
 
 class TicTacToe extends StatefulWidget {
   @override
@@ -8,11 +9,25 @@ class TicTacToe extends StatefulWidget {
 class _TicTacToeState extends State<TicTacToe> {
   bool ohTurn = true; // first player is 'O'
   List<String> displayEx0h = ['', '', '', '', '', '', '', '', ''];
+  bool _hasTrackedPlay = false;
 
   var myTextStyle = TextStyle(color: Colors.white, fontSize: 30);
   int ohScore = 0;
   int exScore = 0;
   int filledBoxes = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _trackGamePlay();
+  }
+
+  Future<void> _trackGamePlay() async {
+    if (!_hasTrackedPlay) {
+      await UserProfileService.incrementGamesPlayed();
+      _hasTrackedPlay = true;
+    }
+  }
 
   bool _checkWinningCondition(String symbol) {
     // Check for winning conditions based on the provided symbol

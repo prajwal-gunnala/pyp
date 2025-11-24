@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'menu.dart';
+import 'category_page.dart';
+import 'chatbot.dart';
+import 'services/user_profile_service.dart';
 
 class Assessment extends StatefulWidget {
   @override
@@ -61,6 +63,35 @@ class _AssessmentState extends State<Assessment> {
         title: Text('Self Assessment', style: GoogleFonts.abrilFatface()),
         backgroundColor: Color(0xFFF3EDE0),
         elevation: 0,
+        actions: [
+          PopupMenuButton<String>(
+            icon: Icon(Icons.menu_rounded, color: Colors.black87),
+            offset: Offset(0, 50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            onSelected: (value) {
+              if (value == 'categories') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CategoryPage()),
+                );
+              }
+            },
+            itemBuilder: (BuildContext context) => [
+              PopupMenuItem(
+                value: 'categories',
+                child: Row(
+                  children: [
+                    Icon(Icons.category_rounded, color: Colors.black87),
+                    SizedBox(width: 12),
+                    Text('Categories', style: GoogleFonts.lato(fontSize: 16)),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -132,16 +163,23 @@ class _AssessmentState extends State<Assessment> {
                   flex: 2,
                   child: ElevatedButton(
                     onPressed: questions[currentQuestionIndex]['selected'] != ''
-                        ? () {
+                        ? () async {
                             if (currentQuestionIndex < questions.length - 1) {
                               _pageController.nextPage(
                                 duration: Duration(milliseconds: 300),
                                 curve: Curves.easeInOut,
                               );
                             } else {
-                              Navigator.push(
+                              // Track assessment completion
+                              await UserProfileService.incrementAssessmentsTaken();
+                              
+                              if (!mounted) return;
+                              
+                              // After completing the first assessment, go straight to the chat
+                              // experience instead of the generic menu.
+                              Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(builder: (context) => Menu()),
+                                MaterialPageRoute(builder: (context) => const ChatBot()),
                               );
                             }
                           }

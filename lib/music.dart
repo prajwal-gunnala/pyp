@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
+import 'services/user_profile_service.dart';
+import 'services/wellness_service.dart';
 
 class Music extends StatefulWidget {
   @override
@@ -146,6 +148,9 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> {
     currentIndex = widget.initialIndex;
     _player = AudioPlayer();
     _initPlayer();
+    
+    // Record music usage in wellness service
+    WellnessService.recordFeatureUsage('music');
   }
 
   Future<void> _initPlayer() async {
@@ -190,6 +195,10 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> {
       setState(() {
         currentIndex = index;
       });
+      
+      // Track music play for stats
+      await UserProfileService.incrementMusicPlays();
+      
       await _player.setAsset(widget.allMusic[index]['audio']!);
       await _player.play();
     } catch (e) {
