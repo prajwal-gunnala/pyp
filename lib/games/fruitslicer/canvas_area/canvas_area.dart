@@ -8,6 +8,8 @@ import 'models/touch_slice.dart';
 import 'slice_painter.dart';
 
 class CanvasArea extends StatefulWidget {
+  const CanvasArea({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _CanvasAreaState();
@@ -30,7 +32,7 @@ class _CanvasAreaState<CanvasArea> extends State {
   void _spawnRandomFruit() {
     _fruits.add(
       Fruit(
-        position: Offset(0, 200),
+        position: const Offset(0, 200),
         width: 80,
         height: 80,
         additionalForce: Offset(
@@ -56,7 +58,7 @@ class _CanvasAreaState<CanvasArea> extends State {
       }
     });
 
-    Future<void>.delayed(Duration(milliseconds: 30), _tick);
+    Future<void>.delayed(const Duration(milliseconds: 30), _tick);
   }
 
   @override
@@ -78,7 +80,7 @@ class _CanvasAreaState<CanvasArea> extends State {
         top: 16,
         child: Text(
           'Score: $_score',
-          style: TextStyle(fontSize: 24),
+          style: const TextStyle(fontSize: 24),
         ),
       ),
     );
@@ -88,7 +90,7 @@ class _CanvasAreaState<CanvasArea> extends State {
 
   Container _getBackground() {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: RadialGradient(
           stops: <double>[0.2, 1.0],
           colors: <Color>[Color(0xffFFB75E), Color(0xffED8F03)],

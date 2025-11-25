@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'services/micro_tasks_service.dart';
 
 class MicroTasksPage extends StatefulWidget {
-  const MicroTasksPage({Key? key}) : super(key: key);
+  const MicroTasksPage({super.key});
 
   @override
   State<MicroTasksPage> createState() => _MicroTasksPageState();
@@ -112,10 +112,10 @@ class _MicroTasksPageState extends State<MicroTasksPage> {
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [
-            const Color(0xFF5D4E37),
-            const Color(0xFF8B7355),
+            Color(0xFF5D4E37),
+            Color(0xFF8B7355),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,

@@ -6,19 +6,21 @@ import 'doctor.dart';
 import 'widgets/modern_card.dart';
 
 class CategoryPage extends StatelessWidget {
+  const CategoryPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF3EDE0),
+      backgroundColor: const Color(0xFFF3EDE0),
       appBar: AppBar(
         title: Text('Categories', style: GoogleFonts.abrilFatface()),
-        backgroundColor: Color(0xFFF3EDE0),
+        backgroundColor: const Color(0xFFF3EDE0),
         elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             buildModernSection(
               context,
               'Music Therapy',
@@ -37,7 +39,7 @@ class CategoryPage extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             buildModernSection(
               context,
               'Mind Games',
@@ -54,7 +56,7 @@ class CategoryPage extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             buildModernSection(
               context,
               'Consultants',
@@ -72,7 +74,7 @@ class CategoryPage extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
           ],
         ),
       ),
@@ -111,20 +113,20 @@ class CategoryPage extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(width: 4),
-                    Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Colors.black54),
+                    const SizedBox(width: 4),
+                    const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Colors.black54),
                   ],
                 ),
               ),
             ],
           ),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         SizedBox(
           height: 180,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: limitedItems.length,
             itemBuilder: (context, index) {
               return Padding(
@@ -148,13 +150,15 @@ class CategoryPage extends StatelessWidget {
 
 // All Music Page
 class AllMusicPage extends StatelessWidget {
+  const AllMusicPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF3EDE0),
+      backgroundColor: const Color(0xFFF3EDE0),
       appBar: AppBar(
         title: Text('All Music Therapy', style: GoogleFonts.abrilFatface()),
-        backgroundColor: Color(0xFFF3EDE0),
+        backgroundColor: const Color(0xFFF3EDE0),
         elevation: 0,
       ),
       body: Center(
@@ -167,7 +171,7 @@ class AllMusicPage extends StatelessWidget {
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.black87,
-            padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
           child: Text(
@@ -182,13 +186,15 @@ class AllMusicPage extends StatelessWidget {
 
 // All Games Page
 class AllGamesPage extends StatelessWidget {
+  const AllGamesPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF3EDE0),
+      backgroundColor: const Color(0xFFF3EDE0),
       appBar: AppBar(
         title: Text('All Mind Games', style: GoogleFonts.abrilFatface()),
-        backgroundColor: Color(0xFFF3EDE0),
+        backgroundColor: const Color(0xFFF3EDE0),
         elevation: 0,
       ),
       body: Center(
@@ -201,7 +207,7 @@ class AllGamesPage extends StatelessWidget {
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.black87,
-            padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
           child: Text(
@@ -216,13 +222,15 @@ class AllGamesPage extends StatelessWidget {
 
 // All Consultants Page
 class AllConsultantsPage extends StatelessWidget {
+  const AllConsultantsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF3EDE0),
+      backgroundColor: const Color(0xFFF3EDE0),
       appBar: AppBar(
         title: Text('All Consultants', style: GoogleFonts.abrilFatface()),
-        backgroundColor: Color(0xFFF3EDE0),
+        backgroundColor: const Color(0xFFF3EDE0),
         elevation: 0,
       ),
       body: Center(
@@ -235,7 +243,7 @@ class AllConsultantsPage extends StatelessWidget {
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.black87,
-            padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
           child: Text(

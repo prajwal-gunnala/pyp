@@ -6,7 +6,7 @@ import 'package:pyph/services/tts_service.dart';
 import 'package:pyph/widgets/talking_bot_avatar.dart';
 
 class VoiceChatPage extends StatefulWidget {
-  const VoiceChatPage({Key? key}) : super(key: key);
+  const VoiceChatPage({super.key});
 
   @override
   _VoiceChatPageState createState() => _VoiceChatPageState();
@@ -130,12 +130,12 @@ class _VoiceChatPageState extends State<VoiceChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF3EDE0),
+      backgroundColor: const Color(0xFFF3EDE0),
       appBar: AppBar(
-        backgroundColor: Color(0xFFF3EDE0),
+        backgroundColor: const Color(0xFFF3EDE0),
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black87),
+          icon: const Icon(Icons.arrow_back, color: Colors.black87),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
@@ -159,18 +159,18 @@ class _VoiceChatPageState extends State<VoiceChatPage> {
                     size: 300,
                   ),
                   
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   
                   // Display Text
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 32),
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
                     child: AnimatedContainer(
-                      duration: Duration(milliseconds: 300),
-                      padding: EdgeInsets.all(20),
+                      duration: const Duration(milliseconds: 300),
+                      padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.9),
                         borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: Colors.black12,
                             blurRadius: 10,
@@ -196,11 +196,11 @@ class _VoiceChatPageState extends State<VoiceChatPage> {
           
           // Microphone Button at Bottom
           Padding(
-            padding: EdgeInsets.only(bottom: 40),
+            padding: const EdgeInsets.only(bottom: 40),
             child: GestureDetector(
               onTap: _isListening ? _stopListeningAndSend : _startListening,
               child: AnimatedContainer(
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 width: _isListening ? 90 : 80,
                 height: _isListening ? 90 : 80,
                 decoration: BoxDecoration(
@@ -209,7 +209,7 @@ class _VoiceChatPageState extends State<VoiceChatPage> {
                     ? Colors.red.shade400 
                     : (_isSpeaking || _isThinking)
                       ? Colors.grey.shade400
-                      : Color(0xFF5D4E37),
+                      : const Color(0xFF5D4E37),
                   boxShadow: [
                     BoxShadow(
                       color: _isListening 

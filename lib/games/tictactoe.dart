@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../services/user_profile_service.dart';
 
 class TicTacToe extends StatefulWidget {
+  const TicTacToe({super.key});
+
   @override
   _TicTacToeState createState() => _TicTacToeState();
 }
@@ -11,7 +13,7 @@ class _TicTacToeState extends State<TicTacToe> {
   List<String> displayEx0h = ['', '', '', '', '', '', '', '', ''];
   bool _hasTrackedPlay = false;
 
-  var myTextStyle = TextStyle(color: Colors.white, fontSize: 30);
+  var myTextStyle = const TextStyle(color: Colors.white, fontSize: 30);
   int ohScore = 0;
   int exScore = 0;
   int filledBoxes = 0;
@@ -76,7 +78,7 @@ class _TicTacToeState extends State<TicTacToe> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(44, 37, 37, 37),
+      backgroundColor: const Color.fromARGB(44, 37, 37, 37),
       body: Column(
         children: <Widget>[
           Expanded(
@@ -125,7 +127,7 @@ class _TicTacToeState extends State<TicTacToe> {
             child: GridView.builder(
               itemCount: 9,
               gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                  const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: () {
@@ -138,7 +140,7 @@ class _TicTacToeState extends State<TicTacToe> {
                     child: Center(
                       child: Text(
                         displayEx0h[index],
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 40,
                         ),
@@ -158,7 +160,7 @@ class _TicTacToeState extends State<TicTacToe> {
                       'TIC TAC TOE',
                       style: myTextStyle,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 60,
                     ),
                   ],
@@ -171,7 +173,7 @@ class _TicTacToeState extends State<TicTacToe> {
               child: Center(
                 child: ElevatedButton(
                   onPressed: _resetGame,
-                  child: Text(
+                  child: const Text(
                     'Reset Game',
                     style: TextStyle(fontSize: 50),
                   ),
@@ -220,7 +222,7 @@ class _TicTacToeState extends State<TicTacToe> {
           content: Text("Loser is: $loser"),
           actions: <Widget>[
             FloatingActionButton(
-              child: Text('Play Again'),
+              child: const Text('Play Again'),
               onPressed: () {
                 _clearBoard();
                 Navigator.of(context).pop();
@@ -238,7 +240,7 @@ class _TicTacToeState extends State<TicTacToe> {
     }
 
     // Wait for a short period and then check for a tie
-    Future.delayed(Duration(milliseconds: 1000), () {
+    Future.delayed(const Duration(milliseconds: 1000), () {
       _checkForTie();
     });
   }
@@ -250,11 +252,11 @@ class _TicTacToeState extends State<TicTacToe> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("It's a Tie!"),
-            content: Text("Both players have equal scores."),
+            title: const Text("It's a Tie!"),
+            content: const Text("Both players have equal scores."),
             actions: <Widget>[
               FloatingActionButton(
-                child: Text('Play Again'),
+                child: const Text('Play Again'),
                 onPressed: () {
                   _clearBoard();
                   Navigator.of(context).pop();
@@ -294,11 +296,11 @@ class _TicTacToeState extends State<TicTacToe> {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text("It's a Draw!"),
-        content: Text("No one wins this round."),
+        title: const Text("It's a Draw!"),
+        content: const Text("No one wins this round."),
         actions: <Widget>[
           FloatingActionButton(
-            child: Text('Play Again'),
+            child: const Text('Play Again'),
             onPressed: () {
               _clearBoard();
               Navigator.of(context).pop();

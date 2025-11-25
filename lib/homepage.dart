@@ -7,18 +7,20 @@ import 'profile_page.dart';
 import 'calendar_page.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF3EDE0),
+      backgroundColor: const Color(0xFFF3EDE0),
       appBar: AppBar(
         title: Text('Welcome', style: GoogleFonts.abrilFatface(fontSize: 24)),
-        backgroundColor: Color(0xFFF3EDE0),
+        backgroundColor: const Color(0xFFF3EDE0),
         elevation: 0,
         actions: [
           PopupMenuButton<String>(
-            icon: Icon(Icons.menu_rounded, color: Colors.black87),
-            offset: Offset(0, 50),
+            icon: const Icon(Icons.menu_rounded, color: Colors.black87),
+            offset: const Offset(0, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
@@ -31,7 +33,7 @@ class HomePage extends StatelessWidget {
               } else if (value == 'calendar') {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CalendarPage()),
+                  MaterialPageRoute(builder: (context) => const CalendarPage()),
                 );
               } else if (value == 'profile') {
                 Navigator.push(
@@ -45,8 +47,8 @@ class HomePage extends StatelessWidget {
                 value: 'calendar',
                 child: Row(
                   children: [
-                    Icon(Icons.calendar_month_rounded, color: Color(0xFF4CAF50)),
-                    SizedBox(width: 12),
+                    const Icon(Icons.calendar_month_rounded, color: Color(0xFF4CAF50)),
+                    const SizedBox(width: 12),
                     Text('Wellness Calendar', style: GoogleFonts.lato(fontSize: 16)),
                   ],
                 ),
@@ -55,8 +57,8 @@ class HomePage extends StatelessWidget {
                 value: 'categories',
                 child: Row(
                   children: [
-                    Icon(Icons.category_rounded, color: Colors.black87),
-                    SizedBox(width: 12),
+                    const Icon(Icons.category_rounded, color: Colors.black87),
+                    const SizedBox(width: 12),
                     Text('Categories', style: GoogleFonts.lato(fontSize: 16)),
                   ],
                 ),
@@ -65,8 +67,8 @@ class HomePage extends StatelessWidget {
                 value: 'profile',
                 child: Row(
                   children: [
-                    Icon(Icons.person_rounded, color: Colors.black87),
-                    SizedBox(width: 12),
+                    const Icon(Icons.person_rounded, color: Colors.black87),
+                    const SizedBox(width: 12),
                     Text('Profile', style: GoogleFonts.lato(fontSize: 16)),
                   ],
                 ),
@@ -98,7 +100,7 @@ class HomePage extends StatelessWidget {
                 style: GoogleFonts.abrilFatface(
                   fontSize: 48,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF5D4E37),
+                  color: const Color(0xFF5D4E37),
                 ),
               ),
               Text(
@@ -110,9 +112,9 @@ class HomePage extends StatelessWidget {
                   color: Colors.black87,
                 ),
               ),
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
               // AI Chatbot button with icon
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 64,
                 child: ElevatedButton.icon(
@@ -120,14 +122,14 @@ class HomePage extends StatelessWidget {
                     Navigator.push(
                       context,
                       PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) => ChatBot(),
+                        pageBuilder: (context, animation, secondaryAnimation) => const ChatBot(),
                         transitionsBuilder: (context, animation, secondaryAnimation, child) {
                           return FadeTransition(opacity: animation, child: child);
                         },
                       ),
                     );
                   },
-                  icon: Icon(Icons.chat_bubble_rounded, size: 28, color: Colors.white),
+                  icon: const Icon(Icons.chat_bubble_rounded, size: 28, color: Colors.white),
                   label: Text(
                     'AI Chatbot',
                     style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.w600),
@@ -142,9 +144,9 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Assessment button
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 64,
                 child: ElevatedButton.icon(
@@ -159,13 +161,13 @@ class HomePage extends StatelessWidget {
                       ),
                     );
                   },
-                  icon: Icon(Icons.assignment_rounded, size: 28, color: Colors.white),
+                  icon: const Icon(Icons.assignment_rounded, size: 28, color: Colors.white),
                   label: Text(
                     'Take an Assessment',
                     style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF5D4E37),
+                    backgroundColor: const Color(0xFF5D4E37),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),

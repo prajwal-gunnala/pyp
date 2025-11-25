@@ -8,6 +8,8 @@ import 'micro_tasks_page.dart';
 import 'calendar_page.dart';
 
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
@@ -94,17 +96,17 @@ class _ProfilePageState extends State<ProfilePage> {
           Center(
             child: Column(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 60,
                   backgroundColor: Colors.black87,
                   child: Icon(Icons.person_rounded, size: 60, color: Color(0xFFF3EDE0)),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Text(
                   _userName,
                   style: GoogleFonts.abrilFatface(fontSize: 28, color: Colors.black87),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   'Taking care of your mental health',
                   style: GoogleFonts.lato(fontSize: 16, color: Colors.black54),
@@ -112,13 +114,13 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
           ),
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           
           // Streak card - highlight this for engagement
           if (_streak > 0)
             _buildStreakCard(),
           if (_streak > 0)
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
           
           // Activity stats - real data
           _buildProfileCard(
@@ -134,11 +136,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 _buildInfoRow(Icons.calendar_today_rounded, 'Days with us', '$_daysSinceStart ${_daysSinceStart == 1 ? 'day' : 'days'}'),
             ],
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           
           // Wellness Tools - NEW
           _buildWellnessToolsCard(),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           
           // Consultation Documents card
           _buildProfileCard(
@@ -149,7 +151,7 @@ class _ProfilePageState extends State<ProfilePage> {
               _buildDocumentRow('Treatment Plan', 'April 10, 3002', Icons.medical_information_rounded),
             ],
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           
           // Bookings with Consultant card
           _buildProfileCard(
@@ -159,10 +161,10 @@ class _ProfilePageState extends State<ProfilePage> {
               _buildBookingRow('Dr. James Rodriguez', 'Last Session: May 10, 3002', '2:30 PM'),
             ],
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           
           // Settings button
-          Container(
+          SizedBox(
             width: double.infinity,
             height: 56,
             child: ElevatedButton.icon(
@@ -172,7 +174,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   SnackBar(content: Text('Settings coming soon!', style: GoogleFonts.lato())),
                 );
               },
-              icon: Icon(Icons.settings_rounded),
+              icon: const Icon(Icons.settings_rounded),
               label: Text(
                 'Settings',
                 style: GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w600),
@@ -197,16 +199,16 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [
-            const Color(0xFF8B7355),
-            const Color(0xFF5D4E37),
+            Color(0xFF8B7355),
+            Color(0xFF5D4E37),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black26,
             blurRadius: 12,
@@ -222,7 +224,7 @@ class _ProfilePageState extends State<ProfilePage> {
               color: Colors.white.withOpacity(0.2),
               shape: BoxShape.circle,
             ),
-            child: Icon(
+            child: const Icon(
               Icons.local_fire_department_rounded,
               color: Colors.white,
               size: 40,
@@ -259,11 +261,11 @@ class _ProfilePageState extends State<ProfilePage> {
   // Wellness tools navigation card
   Widget _buildWellnessToolsCard() {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black12,
             blurRadius: 8,
@@ -278,21 +280,21 @@ class _ProfilePageState extends State<ProfilePage> {
             'Wellness Tools',
             style: GoogleFonts.abrilFatface(fontSize: 18, color: Colors.black87),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           // NEW: Calendar button - prominent position at top
           _buildToolButton(
             icon: Icons.calendar_month_rounded,
             label: 'Wellness Calendar',
             description: 'Track your daily progress',
-            color: Color(0xFF4CAF50),
+            color: const Color(0xFF4CAF50),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CalendarPage()),
+                MaterialPageRoute(builder: (context) => const CalendarPage()),
               );
             },
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           _buildToolButton(
             icon: Icons.book_outlined,
             label: 'My Journal',
@@ -305,7 +307,7 @@ class _ProfilePageState extends State<ProfilePage> {
               );
             },
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           _buildToolButton(
             icon: Icons.check_circle_outline,
             label: 'Daily Tasks',
@@ -386,11 +388,11 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _buildProfileCard(String title, List<Widget> children) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black12,
             blurRadius: 8,
@@ -405,7 +407,7 @@ class _ProfilePageState extends State<ProfilePage> {
             title,
             style: GoogleFonts.abrilFatface(fontSize: 18, color: Colors.black87),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ...children,
         ],
       ),
@@ -418,7 +420,7 @@ class _ProfilePageState extends State<ProfilePage> {
       child: Row(
         children: [
           Icon(icon, color: Colors.black54, size: 20),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -452,14 +454,14 @@ class _ProfilePageState extends State<ProfilePage> {
       child: Row(
         children: [
           Container(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Color(0xFFF3EDE0),
+              color: const Color(0xFFF3EDE0),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(icon, color: Color(0xFF5D4E37), size: 20),
+            child: Icon(icon, color: const Color(0xFF5D4E37), size: 20),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -482,7 +484,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
           ),
-          Icon(Icons.arrow_forward_ios_rounded, color: Colors.black54, size: 16),
+          const Icon(Icons.arrow_forward_ios_rounded, color: Colors.black54, size: 16),
         ],
       ),
     );
@@ -493,12 +495,12 @@ class _ProfilePageState extends State<ProfilePage> {
       padding: const EdgeInsets.only(bottom: 12.0),
       child: Row(
         children: [
-          CircleAvatar(
+          const CircleAvatar(
             radius: 24,
             backgroundColor: Color(0xFF5D4E37),
             child: Icon(Icons.person_rounded, color: Colors.white, size: 24),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -522,16 +524,16 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: Color(0xFFF3EDE0),
+              color: const Color(0xFFF3EDE0),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
               time,
               style: GoogleFonts.lato(
                 fontSize: 12,
-                color: Color(0xFF5D4E37),
+                color: const Color(0xFF5D4E37),
                 fontWeight: FontWeight.w600,
               ),
             ),

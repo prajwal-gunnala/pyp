@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Doctor extends StatelessWidget {
-  final List<Map<String, dynamic>> consultantData = [
+  final List<Map<String, dynamic>> consultantData = const [
     {
       'name': 'Dr. Rachael',
       'designation': 'Psychiatrist',
@@ -40,17 +40,19 @@ class Doctor extends StatelessWidget {
     },
   ];
 
+  const Doctor({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF3EDE0),
+      backgroundColor: const Color(0xFFF3EDE0),
       appBar: AppBar(
         title: Text('Mental Health Consultants', style: GoogleFonts.abrilFatface(fontSize: 22)),
-        backgroundColor: Color(0xFFF3EDE0),
+        backgroundColor: const Color(0xFFF3EDE0),
         elevation: 0,
       ),
       body: ListView.builder(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         itemCount: consultantData.length,
         itemBuilder: (context, index) {
           final doctor = consultantData[index];
@@ -60,7 +62,7 @@ class Doctor extends StatelessWidget {
             experience: doctor['experience'],
             imagePath: doctor['image'],
             rating: 4.8,
-            availableTimes: ['9:00 AM', '11:00 AM', '2:00 PM', '4:00 PM'],
+            availableTimes: const ['9:00 AM', '11:00 AM', '2:00 PM', '4:00 PM'],
           );
         },
       ),
@@ -76,7 +78,7 @@ class DoctorCard extends StatelessWidget {
   final double rating;
   final List<String> availableTimes;
 
-  const DoctorCard({
+  const DoctorCard({super.key, 
     required this.name,
     required this.designation,
     required this.experience,
@@ -88,7 +90,7 @@ class DoctorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
+      margin: const EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -96,7 +98,7 @@ class DoctorCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withOpacity(0.08),
             blurRadius: 15,
-            offset: Offset(0, 5),
+            offset: const Offset(0, 5),
           ),
         ],
       ),
@@ -105,7 +107,7 @@ class DoctorCard extends StatelessWidget {
         children: [
           // Doctor Header with Image and Info
           Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Row(
               children: [
                 // Doctor Image
@@ -114,12 +116,12 @@ class DoctorCard extends StatelessWidget {
                   height: 90,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: Color(0xFF8B7355), width: 3),
+                    border: Border.all(color: const Color(0xFF8B7355), width: 3),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.1),
                         blurRadius: 8,
-                        offset: Offset(0, 4),
+                        offset: const Offset(0, 4),
                       ),
                     ],
                   ),
@@ -130,7 +132,7 @@ class DoctorCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 // Doctor Info
                 Expanded(
                   child: Column(
@@ -143,20 +145,20 @@ class DoctorCard extends StatelessWidget {
                           color: Colors.black87,
                         ),
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
                         designation,
                         style: GoogleFonts.lato(
                           fontSize: 14,
-                          color: Color(0xFF8B7355),
+                          color: const Color(0xFF8B7355),
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Row(
                         children: [
-                          Icon(Icons.work_outline, size: 14, color: Colors.black54),
-                          SizedBox(width: 4),
+                          const Icon(Icons.work_outline, size: 14, color: Colors.black54),
+                          const SizedBox(width: 4),
                           Text(
                             experience,
                             style: GoogleFonts.lato(
@@ -164,9 +166,9 @@ class DoctorCard extends StatelessWidget {
                               color: Colors.black54,
                             ),
                           ),
-                          SizedBox(width: 16),
-                          Icon(Icons.star, size: 14, color: Colors.amber),
-                          SizedBox(width: 4),
+                          const SizedBox(width: 16),
+                          const Icon(Icons.star, size: 14, color: Colors.amber),
+                          const SizedBox(width: 4),
                           Text(
                             rating.toString(),
                             style: GoogleFonts.lato(
@@ -186,13 +188,13 @@ class DoctorCard extends StatelessWidget {
           
           // Divider
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Divider(color: Colors.grey[300], thickness: 1),
           ),
           
           // Available Times
           Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -204,23 +206,23 @@ class DoctorCard extends StatelessWidget {
                     color: Colors.black87,
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
                   children: availableTimes.map((time) {
                     return Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
-                        color: Color(0xFFF3EDE0),
+                        color: const Color(0xFFF3EDE0),
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Color(0xFF8B7355).withOpacity(0.3)),
+                        border: Border.all(color: const Color(0xFF8B7355).withOpacity(0.3)),
                       ),
                       child: Text(
                         time,
                         style: GoogleFonts.lato(
                           fontSize: 12,
-                          color: Color(0xFF8B7355),
+                          color: const Color(0xFF8B7355),
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -233,7 +235,7 @@ class DoctorCard extends StatelessWidget {
           
           // Book Appointment Button
           Padding(
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -241,7 +243,7 @@ class DoctorCard extends StatelessWidget {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Booking appointment with $name...'),
-                      backgroundColor: Color(0xFF8B7355),
+                      backgroundColor: const Color(0xFF8B7355),
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -250,8 +252,8 @@ class DoctorCard extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF8B7355),
-                  padding: EdgeInsets.symmetric(vertical: 16),
+                  backgroundColor: const Color(0xFF8B7355),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -260,8 +262,8 @@ class DoctorCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.calendar_today, size: 18, color: Colors.white),
-                    SizedBox(width: 8),
+                    const Icon(Icons.calendar_today, size: 18, color: Colors.white),
+                    const SizedBox(width: 8),
                     Text(
                       'Book Appointment',
                       style: GoogleFonts.lato(

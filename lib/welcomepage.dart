@@ -3,17 +3,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'homepage.dart';
 
 class WelcomePage extends StatelessWidget {
+  const WelcomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF3EDE0),
+      backgroundColor: const Color(0xFFF3EDE0),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
               // Logo
               Center(
                 child: Hero(
@@ -25,7 +27,7 @@ class WelcomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               // Motivational text
               Text(
                 'Taking',
@@ -64,14 +66,14 @@ class WelcomePage extends StatelessWidget {
                 style: GoogleFonts.abrilFatface(
                   fontSize: 36,
                   height: 1.3,
-                  color: Color(0xFF5D4E37),
+                  color: const Color(0xFF5D4E37),
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               // Modern button
               Center(
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: 56,
                   child: ElevatedButton(
@@ -81,7 +83,7 @@ class WelcomePage extends StatelessWidget {
                         PageRouteBuilder(
                           pageBuilder: (context, animation, secondaryAnimation) => HomePage(),
                           transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                            var begin = Offset(1.0, 0.0);
+                            var begin = const Offset(1.0, 0.0);
                             var end = Offset.zero;
                             var curve = Curves.easeInOut;
                             var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
@@ -112,7 +114,7 @@ class WelcomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
             ],
           ),
         ),

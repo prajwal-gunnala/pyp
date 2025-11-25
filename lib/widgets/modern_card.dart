@@ -10,14 +10,14 @@ class ModernImageCard extends StatelessWidget {
   final double width;
 
   const ModernImageCard({
-    Key? key,
+    super.key,
     required this.imagePath,
     required this.title,
     this.subtitle,
     required this.onTap,
     this.height = 180,
     this.width = 160,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,14 @@ class ModernImageCard extends StatelessWidget {
       child: Container(
         width: width,
         height: height,
-        margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.15),
               blurRadius: 10,
-              offset: Offset(0, 4),
+              offset: const Offset(0, 4),
             ),
           ],
         ),
@@ -64,7 +64,7 @@ class ModernImageCard extends StatelessWidget {
                       Colors.black.withOpacity(0.3),
                       Colors.black.withOpacity(0.85),
                     ],
-                    stops: [0.3, 0.6, 1.0],
+                    stops: const [0.3, 0.6, 1.0],
                   ),
                 ),
               ),
@@ -96,7 +96,7 @@ class ModernImageCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       if (subtitle != null) ...[
-                        SizedBox(height: 4),
+                        const SizedBox(height: 4),
                         Text(
                           subtitle!,
                           style: GoogleFonts.lato(
@@ -135,32 +135,32 @@ class DoctorCard extends StatelessWidget {
   final VoidCallback onContact;
 
   const DoctorCard({
-    Key? key,
+    super.key,
     required this.name,
     required this.designation,
     required this.experience,
     required this.imagePath,
     required this.onBook,
     required this.onContact,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
             blurRadius: 15,
-            offset: Offset(0, 5),
+            offset: const Offset(0, 5),
           ),
         ],
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
-        child: Container(
+        child: SizedBox(
           height: 240,
           child: Stack(
             fit: StackFit.expand,
@@ -187,7 +187,7 @@ class DoctorCard extends StatelessWidget {
                       Colors.black.withOpacity(0.4),
                       Colors.black.withOpacity(0.9),
                     ],
-                    stops: [0.2, 0.5, 1.0],
+                    stops: const [0.2, 0.5, 1.0],
                   ),
                 ),
               ),
@@ -210,7 +210,7 @@ class DoctorCard extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
                         designation,
                         style: GoogleFonts.lato(
@@ -218,7 +218,7 @@ class DoctorCard extends StatelessWidget {
                           color: Colors.white.withOpacity(0.9),
                         ),
                       ),
-                      SizedBox(height: 2),
+                      const SizedBox(height: 2),
                       Text(
                         'Experience: $experience',
                         style: GoogleFonts.lato(
@@ -226,35 +226,35 @@ class DoctorCard extends StatelessWidget {
                           color: Colors.white.withOpacity(0.8),
                         ),
                       ),
-                      SizedBox(height: 12),
+                      const SizedBox(height: 12),
                       Row(
                         children: [
                           Expanded(
                             child: ElevatedButton.icon(
                               onPressed: onBook,
-                              icon: Icon(Icons.calendar_today, size: 18),
-                              label: Text('Book'),
+                              icon: const Icon(Icons.calendar_today, size: 18),
+                              label: const Text('Book'),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white,
                                 foregroundColor: Colors.black,
-                                padding: EdgeInsets.symmetric(vertical: 12),
+                                padding: const EdgeInsets.symmetric(vertical: 12),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
                             ),
                           ),
-                          SizedBox(width: 12),
+                          const SizedBox(width: 12),
                           Expanded(
                             child: ElevatedButton.icon(
                               onPressed: onContact,
-                              icon: Icon(Icons.phone, size: 18),
-                              label: Text('Contact'),
+                              icon: const Icon(Icons.phone, size: 18),
+                              label: const Text('Contact'),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white.withOpacity(0.2),
                                 foregroundColor: Colors.white,
-                                side: BorderSide(color: Colors.white, width: 1.5),
-                                padding: EdgeInsets.symmetric(vertical: 12),
+                                side: const BorderSide(color: Colors.white, width: 1.5),
+                                padding: const EdgeInsets.symmetric(vertical: 12),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),

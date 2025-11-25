@@ -17,7 +17,7 @@ import 'voice_chat_page.dart';
 import 'calendar_page.dart';
 
 class ChatBot extends StatefulWidget {
-  const ChatBot({Key? key}) : super(key: key);
+  const ChatBot({super.key});
 
   @override
   _ChatBotState createState() => _ChatBotState();
@@ -86,7 +86,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
       await UserProfileService.incrementSessions();
       
       // Wait a bit for history to fully load
-      await Future.delayed(Duration(milliseconds: 150));
+      await Future.delayed(const Duration(milliseconds: 150));
       
       // Only add greeting if no chat history exists for today
       if (!mounted) return;
@@ -124,7 +124,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
         });
         
         // Scroll to bottom to show latest messages
-        Future.delayed(Duration(milliseconds: 300), () {
+        Future.delayed(const Duration(milliseconds: 300), () {
           _scrollToBottom();
         });
       }
@@ -145,6 +145,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
   void sendMessage() async {
     String message = textController.text.trim();
     if (message.isNotEmpty) {
+      if (!mounted) return; // Guard #1
+      
       setState(() {
         chatHistory.add(ChatMessage(text: message, isUserMessage: true));
         isLoading = true;
@@ -155,6 +157,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
       
       try {
         final responseText = await ElevenLabsAPI.getAgentReply(message);
+        
+        if (!mounted) return; // Guard #2 - after async call
         
         // Parse navigation actions from response
         final actions = NavigationAction.parseFromResponse(responseText);
@@ -181,11 +185,14 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
         );
         
         // Speak the response if talking bot is enabled
-        if (isTalkingBotEnabled) {
+        if (isTalkingBotEnabled && mounted) {
           await TtsService.speak(cleanText);
         }
       } catch (e) {
         print('Error fetching response: $e');
+        
+        if (!mounted) return; // Guard #3 - after error
+        
         setState(() {
           chatHistory.add(ChatMessage(
             text: 'Error: Unable to get response. Please try again.', 
@@ -202,11 +209,11 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
   }
 
   void _scrollToBottom() {
-    Future.delayed(Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       if (_scrollController.hasClients) {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
         );
       }
@@ -218,7 +225,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Color(0xFFF3EDE0),
+          backgroundColor: const Color(0xFFF3EDE0),
           title: Text('New Conversation', style: GoogleFonts.abrilFatface(fontSize: 20)),
           content: Text(
             'This will clear today\'s conversation and start fresh. Previous days\' conversations are preserved.',
@@ -260,34 +267,34 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF3EDE0),
+      backgroundColor: const Color(0xFFF3EDE0),
       appBar: AppBar(
         title: Row(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               backgroundColor: Colors.black87,
               child: Icon(Icons.psychology_rounded, color: Color(0xFFF3EDE0)),
             ),
-            SizedBox(width: 12),
+            const SizedBox(width: 12),
             Text('AI Friend', style: GoogleFonts.abrilFatface(fontSize: 20)),
           ],
         ),
-        backgroundColor: Color(0xFFF3EDE0),
+        backgroundColor: const Color(0xFFF3EDE0),
         elevation: 0,
         actions: [
           PopupMenuButton<String>(
-            icon: Icon(Icons.menu_rounded, color: Colors.black87, size: 28),
-            color: Color(0xFFF3EDE0),
+            icon: const Icon(Icons.menu_rounded, color: Colors.black87, size: 28),
+            color: const Color(0xFFF3EDE0),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            offset: Offset(0, 50),
+            offset: const Offset(0, 50),
             itemBuilder: (BuildContext context) => [
               // New Conversation
               PopupMenuItem<String>(
                 value: 'new_conversation',
                 child: Row(
                   children: [
-                    Icon(Icons.refresh_rounded, color: Color(0xFF5D4E37), size: 20),
-                    SizedBox(width: 12),
+                    const Icon(Icons.refresh_rounded, color: Color(0xFF5D4E37), size: 20),
+                    const SizedBox(width: 12),
                     Text(
                       'New Conversation',
                       style: GoogleFonts.lato(
@@ -299,7 +306,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                   ],
                 ),
               ),
-              PopupMenuItem<String>(
+              const PopupMenuItem<String>(
                 enabled: false,
                 child: Divider(color: Color(0xFFDBC59C), thickness: 1),
               ),
@@ -307,13 +314,13 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
               PopupMenuItem<String>(
                 enabled: false,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 8),
+                  padding: const EdgeInsets.only(left: 8),
                   child: Text(
                     'CATEGORIES',
                     style: GoogleFonts.lato(
                       fontSize: 11,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF8B7355),
+                      color: const Color(0xFF8B7355),
                       letterSpacing: 1.2,
                     ),
                   ),
@@ -324,8 +331,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                 value: 'calendar',
                 child: Row(
                   children: [
-                    Icon(Icons.calendar_month_rounded, color: Color(0xFF4CAF50), size: 20),
-                    SizedBox(width: 12),
+                    const Icon(Icons.calendar_month_rounded, color: Color(0xFF4CAF50), size: 20),
+                    const SizedBox(width: 12),
                     Text(
                       'Wellness Calendar',
                       style: GoogleFonts.lato(
@@ -342,8 +349,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                 value: 'music',
                 child: Row(
                   children: [
-                    Icon(Icons.music_note_rounded, color: Color(0xFF5D4E37), size: 20),
-                    SizedBox(width: 12),
+                    const Icon(Icons.music_note_rounded, color: Color(0xFF5D4E37), size: 20),
+                    const SizedBox(width: 12),
                     Text(
                       'Healing Music',
                       style: GoogleFonts.lato(fontSize: 15, color: Colors.black87),
@@ -356,8 +363,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                 value: 'games',
                 child: Row(
                   children: [
-                    Icon(Icons.games_rounded, color: Color(0xFF5D4E37), size: 20),
-                    SizedBox(width: 12),
+                    const Icon(Icons.games_rounded, color: Color(0xFF5D4E37), size: 20),
+                    const SizedBox(width: 12),
                     Text(
                       'Relaxation Games',
                       style: GoogleFonts.lato(fontSize: 15, color: Colors.black87),
@@ -370,8 +377,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                 value: 'assessment',
                 child: Row(
                   children: [
-                    Icon(Icons.assignment_rounded, color: Color(0xFF5D4E37), size: 20),
-                    SizedBox(width: 12),
+                    const Icon(Icons.assignment_rounded, color: Color(0xFF5D4E37), size: 20),
+                    const SizedBox(width: 12),
                     Text(
                       'Mental Check-in',
                       style: GoogleFonts.lato(fontSize: 15, color: Colors.black87),
@@ -384,8 +391,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                 value: 'diary',
                 child: Row(
                   children: [
-                    Icon(Icons.book_outlined, color: Color(0xFF5D4E37), size: 20),
-                    SizedBox(width: 12),
+                    const Icon(Icons.book_outlined, color: Color(0xFF5D4E37), size: 20),
+                    const SizedBox(width: 12),
                     Text(
                       'My Journal',
                       style: GoogleFonts.lato(fontSize: 15, color: Colors.black87),
@@ -398,8 +405,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                 value: 'tasks',
                 child: Row(
                   children: [
-                    Icon(Icons.check_circle_outline, color: Color(0xFF5D4E37), size: 20),
-                    SizedBox(width: 12),
+                    const Icon(Icons.check_circle_outline, color: Color(0xFF5D4E37), size: 20),
+                    const SizedBox(width: 12),
                     Text(
                       'Daily Tasks',
                       style: GoogleFonts.lato(fontSize: 15, color: Colors.black87),
@@ -412,8 +419,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                 value: 'doctor',
                 child: Row(
                   children: [
-                    Icon(Icons.medical_services_rounded, color: Color(0xFF5D4E37), size: 20),
-                    SizedBox(width: 12),
+                    const Icon(Icons.medical_services_rounded, color: Color(0xFF5D4E37), size: 20),
+                    const SizedBox(width: 12),
                     Text(
                       'Find Consultant',
                       style: GoogleFonts.lato(fontSize: 15, color: Colors.black87),
@@ -428,7 +435,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
               } else if (value == 'calendar') {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CalendarPage()),
+                  MaterialPageRoute(builder: (context) => const CalendarPage()),
                 );
               } else if (value == 'music') {
                 Navigator.push(
@@ -448,12 +455,12 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
               } else if (value == 'diary') {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DiaryPage()),
+                  MaterialPageRoute(builder: (context) => const DiaryPage()),
                 );
               } else if (value == 'tasks') {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MicroTasksPage()),
+                  MaterialPageRoute(builder: (context) => const MicroTasksPage()),
                 );
               } else if (value == 'doctor') {
                 Navigator.push(
@@ -473,13 +480,13 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.chat_bubble_outline, size: 80, color: Colors.black26),
-                    SizedBox(height: 16),
+                    const Icon(Icons.chat_bubble_outline, size: 80, color: Colors.black26),
+                    const SizedBox(height: 16),
                     Text(
                       'Start a conversation',
                       style: GoogleFonts.abrilFatface(fontSize: 20, color: Colors.black54),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       'Your AI friend is here to listen',
                       style: GoogleFonts.lato(fontSize: 16, color: Colors.black38),
@@ -492,7 +499,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
             Expanded(
               child: ListView.builder(
                 controller: _scrollController,
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 itemCount: chatHistory.length,
                 itemBuilder: (context, index) {
                   return ChatBubble(chatMessage: chatHistory[index]);
@@ -504,14 +511,14 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
               padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               child: Row(
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     backgroundColor: Colors.black87,
                     radius: 16,
                     child: Icon(Icons.psychology_rounded, color: Color(0xFFF3EDE0), size: 18),
                   ),
-                  SizedBox(width: 12),
+                  const SizedBox(width: 12),
                   Container(
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
@@ -519,12 +526,12 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 16,
                           height: 16,
                           child: CircularProgressIndicator(strokeWidth: 2, color: Colors.black87),
                         ),
-                        SizedBox(width: 12),
+                        const SizedBox(width: 12),
                         Text('Thinking...', style: GoogleFonts.lato(color: Colors.black54)),
                       ],
                     ),
@@ -533,8 +540,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
               ),
             ),
           Container(
-            padding: EdgeInsets.all(16),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.all(16),
+            decoration: const BoxDecoration(
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
@@ -561,7 +568,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Color(0xFFF3EDE0),
+                          color: const Color(0xFFF3EDE0),
                           borderRadius: BorderRadius.circular(24),
                           border: Border.all(color: Colors.black26),
                         ),
@@ -573,26 +580,26 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                             hintText: 'Type your message...',
                             hintStyle: GoogleFonts.lato(color: Colors.black38),
                             border: InputBorder.none,
-                            contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                           ),
                           style: GoogleFonts.lato(fontSize: 16),
                           onSubmitted: (_) => sendMessage(),
                         ),
                       ),
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     // Voice Chat button (opens full-screen voice page)
                     Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFF8B7355),
+                        color: const Color(0xFF8B7355),
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Color(0xFF5D4E37),
+                          color: const Color(0xFF5D4E37),
                           width: 2,
                         ),
                       ),
                       child: IconButton(
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.mic,
                           color: Color(0xFFF3EDE0),
                         ),
@@ -601,21 +608,21 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => VoiceChatPage(),
+                              builder: (context) => const VoiceChatPage(),
                             ),
                           );
                         },
                       ),
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     // Send button
                     Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.black87,
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
-                        icon: Icon(Icons.send_rounded, color: Color(0xFFF3EDE0)),
+                        icon: const Icon(Icons.send_rounded, color: Color(0xFFF3EDE0)),
                         onPressed: sendMessage,
                       ),
                     ),
@@ -665,7 +672,7 @@ class ChatMessage {
 class ChatBubble extends StatelessWidget {
   final ChatMessage chatMessage;
 
-  const ChatBubble({Key? key, required this.chatMessage}) : super(key: key);
+  const ChatBubble({super.key, required this.chatMessage});
 
   @override
   Widget build(BuildContext context) {
@@ -683,31 +690,31 @@ class ChatBubble extends StatelessWidget {
                 : MainAxisAlignment.start,
             children: [
               if (!chatMessage.isUserMessage)
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundColor: Colors.black87,
                   radius: 16,
                   child: Icon(Icons.psychology_rounded, 
                       color: Color(0xFFF3EDE0), size: 18),
                 ),
-              if (!chatMessage.isUserMessage) SizedBox(width: 12),
+              if (!chatMessage.isUserMessage) const SizedBox(width: 12),
               Flexible(
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   decoration: BoxDecoration(
                     color: chatMessage.isUserMessage 
                         ? Colors.black87 
                         : Colors.white,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+                      topLeft: const Radius.circular(20),
+                      topRight: const Radius.circular(20),
                       bottomLeft: chatMessage.isUserMessage 
-                          ? Radius.circular(20) 
-                          : Radius.circular(4),
+                          ? const Radius.circular(20) 
+                          : const Radius.circular(4),
                       bottomRight: chatMessage.isUserMessage 
-                          ? Radius.circular(4) 
-                          : Radius.circular(20),
+                          ? const Radius.circular(4) 
+                          : const Radius.circular(20),
                     ),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: Colors.black12,
                         blurRadius: 4,
@@ -727,9 +734,9 @@ class ChatBubble extends StatelessWidget {
                   ),
                 ),
               ),
-              if (chatMessage.isUserMessage) SizedBox(width: 12),
+              if (chatMessage.isUserMessage) const SizedBox(width: 12),
               if (chatMessage.isUserMessage)
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundColor: Colors.black87,
                   radius: 16,
                   child: Icon(Icons.person_rounded, 
@@ -763,9 +770,9 @@ class ChatBubble extends StatelessWidget {
         style: GoogleFonts.lato(fontSize: 14, fontWeight: FontWeight.w600),
       ),
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFF5D4E37),
-        foregroundColor: Color(0xFFF3EDE0),
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        backgroundColor: const Color(0xFF5D4E37),
+        foregroundColor: const Color(0xFFF3EDE0),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
@@ -788,10 +795,10 @@ class ChatBubble extends StatelessWidget {
         page = Assessment();
         break;
       case 'diary':
-        page = DiaryPage();
+        page = const DiaryPage();
         break;
       case 'tasks':
-        page = MicroTasksPage();
+        page = const MicroTasksPage();
         break;
       case 'doctor':
         page = Doctor();

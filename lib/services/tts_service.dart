@@ -29,8 +29,9 @@ class TtsService {
       await _flutterTts.setVolume(1.0);
 
       // Try to set a male voice (this is platform-dependent)
+      // WEB FIX: Handle empty voices list
       var voices = await _flutterTts.getVoices;
-      if (voices != null) {
+      if (voices != null && voices.isNotEmpty) {
         // Look for male voices in the available voices
         var maleVoice = voices.firstWhere(
           (voice) =>
@@ -41,6 +42,8 @@ class TtsService {
         );
         await _flutterTts.setVoice(
             {"name": maleVoice['name'], "locale": maleVoice['locale']});
+      } else {
+        print('TTS: No voices available on this platform (normal for web)');
       }
 
       // Set up handlers for animation synchronization

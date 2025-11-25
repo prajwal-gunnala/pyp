@@ -51,7 +51,7 @@ class SlicePainter extends CustomPainter {
       final double length = sqrt((lengthX * lengthX) + (lengthY * lengthY));
       final double normalizedVectorX = lengthX / length;
       final double normalizedVectorY = lengthY / length;
-      final double distance = 15;
+      const double distance = 15;
 
       final double newXLeft =
           x1 - normalizedVectorY * (i / pointsList.length * distance);

@@ -7,7 +7,7 @@ import 'package:pyph/micro_tasks_page.dart';
 import 'package:pyph/diary_page.dart';
 
 class CalendarPage extends StatefulWidget {
-  const CalendarPage({Key? key}) : super(key: key);
+  const CalendarPage({super.key});
 
   @override
   _CalendarPageState createState() => _CalendarPageState();
@@ -126,8 +126,8 @@ class _CalendarPageState extends State<CalendarPage> {
                       // Styling
                       calendarStyle: CalendarStyle(
                         // Today
-                        todayDecoration: BoxDecoration(
-                          color: const Color(0xFF8B7355),
+                        todayDecoration: const BoxDecoration(
+                          color: Color(0xFF8B7355),
                           shape: BoxShape.circle,
                         ),
                         todayTextStyle: const TextStyle(
@@ -136,8 +136,8 @@ class _CalendarPageState extends State<CalendarPage> {
                         ),
                         
                         // Selected day
-                        selectedDecoration: BoxDecoration(
-                          color: const Color(0xFF5D4E37),
+                        selectedDecoration: const BoxDecoration(
+                          color: Color(0xFF5D4E37),
                           shape: BoxShape.circle,
                         ),
                         selectedTextStyle: const TextStyle(
@@ -146,8 +146,8 @@ class _CalendarPageState extends State<CalendarPage> {
                         ),
                         
                         // Markers (activity dots)
-                        markerDecoration: BoxDecoration(
-                          color: const Color(0xFF4CAF50),
+                        markerDecoration: const BoxDecoration(
+                          color: Color(0xFF4CAF50),
                           shape: BoxShape.circle,
                         ),
                         markersMaxCount: 1,
@@ -602,7 +602,7 @@ class _CalendarPageState extends State<CalendarPage> {
   Color _getScoreColor(int score) {
     if (score >= 90) return const Color(0xFF4CAF50); // Green
     if (score >= 75) return const Color(0xFF8BC34A); // Light Green
-    if (score >= 60) return const Color(0xFFC107); // Yellow
+    if (score >= 60) return const Color(0x00ffc107); // Yellow
     if (score >= 40) return const Color(0xFFFF9800); // Orange
     return const Color(0xFFF44336); // Red
   }

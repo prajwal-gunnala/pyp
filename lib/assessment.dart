@@ -5,6 +5,8 @@ import 'chatbot.dart';
 import 'services/user_profile_service.dart';
 
 class Assessment extends StatefulWidget {
+  const Assessment({super.key});
+
   @override
   _AssessmentState createState() => _AssessmentState();
 }
@@ -58,15 +60,15 @@ class _AssessmentState extends State<Assessment> {
     double progress = (currentQuestionIndex + 1) / questions.length;
     
     return Scaffold(
-      backgroundColor: Color(0xFFF3EDE0),
+      backgroundColor: const Color(0xFFF3EDE0),
       appBar: AppBar(
         title: Text('Self Assessment', style: GoogleFonts.abrilFatface()),
-        backgroundColor: Color(0xFFF3EDE0),
+        backgroundColor: const Color(0xFFF3EDE0),
         elevation: 0,
         actions: [
           PopupMenuButton<String>(
-            icon: Icon(Icons.menu_rounded, color: Colors.black87),
-            offset: Offset(0, 50),
+            icon: const Icon(Icons.menu_rounded, color: Colors.black87),
+            offset: const Offset(0, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
@@ -83,8 +85,8 @@ class _AssessmentState extends State<Assessment> {
                 value: 'categories',
                 child: Row(
                   children: [
-                    Icon(Icons.category_rounded, color: Colors.black87),
-                    SizedBox(width: 12),
+                    const Icon(Icons.category_rounded, color: Colors.black87),
+                    const SizedBox(width: 12),
                     Text('Categories', style: GoogleFonts.lato(fontSize: 16)),
                   ],
                 ),
@@ -98,10 +100,10 @@ class _AssessmentState extends State<Assessment> {
           LinearProgressIndicator(
             value: progress,
             backgroundColor: Colors.grey[300],
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.black87),
+            valueColor: const AlwaysStoppedAnimation<Color>(Colors.black87),
             minHeight: 6,
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Row(
@@ -118,12 +120,12 @@ class _AssessmentState extends State<Assessment> {
               ],
             ),
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Expanded(
             child: PageView.builder(
               itemCount: questions.length,
               controller: _pageController,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               onPageChanged: (index) {
                 setState(() {
                   currentQuestionIndex = index;
@@ -141,13 +143,13 @@ class _AssessmentState extends State<Assessment> {
                     child: OutlinedButton(
                       onPressed: () {
                         _pageController.previousPage(
-                          duration: Duration(milliseconds: 300),
+                          duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                         );
                       },
                       style: OutlinedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        side: BorderSide(color: Colors.black87),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        side: const BorderSide(color: Colors.black87),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -158,7 +160,7 @@ class _AssessmentState extends State<Assessment> {
                       ),
                     ),
                   ),
-                if (currentQuestionIndex > 0) SizedBox(width: 16),
+                if (currentQuestionIndex > 0) const SizedBox(width: 16),
                 Expanded(
                   flex: 2,
                   child: ElevatedButton(
@@ -166,7 +168,7 @@ class _AssessmentState extends State<Assessment> {
                         ? () async {
                             if (currentQuestionIndex < questions.length - 1) {
                               _pageController.nextPage(
-                                duration: Duration(milliseconds: 300),
+                                duration: const Duration(milliseconds: 300),
                                 curve: Curves.easeInOut,
                               );
                             } else {
@@ -185,7 +187,7 @@ class _AssessmentState extends State<Assessment> {
                           }
                         : null,
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                       backgroundColor: Colors.black,
                       disabledBackgroundColor: Colors.grey,
                       shape: RoundedRectangleBorder(
@@ -199,7 +201,7 @@ class _AssessmentState extends State<Assessment> {
                           currentQuestionIndex < questions.length - 1 ? 'Next' : 'Complete',
                           style: GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w600),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Icon(currentQuestionIndex < questions.length - 1
                             ? Icons.arrow_forward_rounded
                             : Icons.check_circle_rounded),
@@ -234,7 +236,7 @@ class _AssessmentState extends State<Assessment> {
                   height: 1.3,
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               ...List.generate(
                 questions[index]['options'].length,
                 (optionIndex) {
@@ -250,7 +252,7 @@ class _AssessmentState extends State<Assessment> {
                         });
                       },
                       child: Container(
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           color: isSelected ? Colors.black87 : Colors.grey[100],
                           borderRadius: BorderRadius.circular(12),
@@ -265,7 +267,7 @@ class _AssessmentState extends State<Assessment> {
                               isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
                               color: isSelected ? Colors.white : Colors.grey[600],
                             ),
-                            SizedBox(width: 12),
+                            const SizedBox(width: 12),
                             Expanded(
                               child: Text(
                                 option,

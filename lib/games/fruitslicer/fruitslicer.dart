@@ -6,6 +6,8 @@ import 'canvas_area/canvas_area.dart';
 import '../../services/user_profile_service.dart';
 
 class FruitSlicer extends StatefulWidget {
+  const FruitSlicer({super.key});
+
   @override
   _FruitSlicerState createState() => _FruitSlicerState();
 }
@@ -24,7 +26,7 @@ class _FruitSlicerState extends State<FruitSlicer> {
       overlays: [SystemUiOverlay.bottom],
     );
 
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
   }

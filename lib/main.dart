@@ -18,13 +18,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'PYP - Prompt Your Problems',
       theme: ThemeData(
-        primaryColor: Color(0xFFDBC59C),
-        scaffoldBackgroundColor: Color(0xFFF3EDE0),
-        colorScheme: ColorScheme.light(
+        primaryColor: const Color(0xFFDBC59C),
+        scaffoldBackgroundColor: const Color(0xFFF3EDE0),
+        colorScheme: const ColorScheme.light(
           primary: Color(0xFFDBC59C),
           secondary: Color(0xFF8B7355),
           surface: Color(0xFFF3EDE0),
-          background: Color(0xFFF3EDE0),
         ),
         // Font hierarchy using different Google Fonts
         textTheme: TextTheme(
@@ -49,16 +48,16 @@ class MyApp extends StatelessWidget {
             backgroundColor: Colors.black,
             foregroundColor: Colors.white,
             textStyle: GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w600),
-            padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             elevation: 4,
           ),
         ),
         appBarTheme: AppBarTheme(
-          backgroundColor: Color(0xFFF3EDE0),
+          backgroundColor: const Color(0xFFF3EDE0),
           elevation: 0,
           titleTextStyle: GoogleFonts.abrilFatface(fontSize: 22, color: Colors.black87),
-          iconTheme: IconThemeData(color: Colors.black87),
+          iconTheme: const IconThemeData(color: Colors.black87),
         ),
       ),
       home: const _RootDecider(),
@@ -67,7 +66,7 @@ class MyApp extends StatelessWidget {
 }
 
 class _RootDecider extends StatefulWidget {
-  const _RootDecider({Key? key}) : super(key: key);
+  const _RootDecider({super.key});
 
   @override
   State<_RootDecider> createState() => _RootDeciderState();

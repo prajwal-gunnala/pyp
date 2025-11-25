@@ -7,13 +7,15 @@ import 'games/fruitslicer/fruitslicer.dart';
 import 'services/wellness_service.dart';
 
 class Games extends StatelessWidget {
+  const Games({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF3EDE0),
+      backgroundColor: const Color(0xFFF3EDE0),
       appBar: AppBar(
         title: Text('Mind Games', style: GoogleFonts.abrilFatface()),
-        backgroundColor: Color(0xFFF3EDE0),
+        backgroundColor: const Color(0xFFF3EDE0),
         elevation: 0,
       ),
       body: Padding(
@@ -25,7 +27,7 @@ class Games extends StatelessWidget {
               'Choose a game to relax and train your mind',
               style: GoogleFonts.lato(fontSize: 16, color: Colors.black54, height: 1.5),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Expanded(
               child: ListView(
                 children: [
@@ -43,7 +45,7 @@ class Games extends StatelessWidget {
                       );
                     },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   _buildGameCard(
                     context,
                     'Fruit Slicer',
@@ -58,7 +60,7 @@ class Games extends StatelessWidget {
                       );
                     },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   _buildGameCard(
                     context,
                     'Sliding Puzzle',
@@ -73,7 +75,7 @@ class Games extends StatelessWidget {
                       );
                     },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   _buildGameCard(
                     context,
                     'Flow Free',
@@ -109,11 +111,11 @@ class Games extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(20),
       child: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black12,
               blurRadius: 8,
@@ -124,14 +126,14 @@ class Games extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: color.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Icon(icon, size: 40, color: color),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,7 +142,7 @@ class Games extends StatelessWidget {
                     title,
                     style: GoogleFonts.abrilFatface(fontSize: 20, color: Colors.black87),
                   ),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   Text(
                     description,
                     style: GoogleFonts.lato(fontSize: 14, color: Colors.black54),
@@ -148,7 +150,7 @@ class Games extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(Icons.arrow_forward_ios_rounded, color: Colors.black38),
+            const Icon(Icons.arrow_forward_ios_rounded, color: Colors.black38),
           ],
         ),
       ),

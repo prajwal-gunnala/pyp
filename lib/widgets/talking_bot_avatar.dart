@@ -10,10 +10,10 @@ class TalkingBotAvatar extends StatefulWidget {
   final double size;
 
   const TalkingBotAvatar({
-    Key? key,
+    super.key,
     required this.isSpeaking,
     this.size = 100,
-  }) : super(key: key);
+  });
 
   @override
   State<TalkingBotAvatar> createState() => _TalkingBotAvatarState();
